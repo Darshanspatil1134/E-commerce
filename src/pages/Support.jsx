@@ -104,13 +104,13 @@ export const Support = () => {
                             </div>
 
                             <div className="flex gap-4 items-start">
-                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ravansunny2916@gmail.com" target="_blank" rel="noopener noreferrer" className="bg-white/20 hover:bg-white/30 transition-colors p-3 rounded-full shrink-0 shadow-sm mt-1 cursor-pointer">
+                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jsgosavi2005@gmail.com" target="_blank" rel="noopener noreferrer" className="bg-white/20 hover:bg-white/30 transition-colors p-3 rounded-full shrink-0 shadow-sm mt-1 cursor-pointer">
                                     <Mail size={24} className="text-white" />
                                 </a>
                                 <div>
                                     <h4 className="font-semibold text-white/90 text-sm uppercase tracking-wider mb-1">Email Support</h4>
-                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ravansunny2916@gmail.com" target="_blank" rel="noopener noreferrer" className="font-bold text-lg mb-0.5 break-all hover:text-gray-200 block transition-colors mt-1">
-                                        ravansunny2916@gmail.com
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jsgosavi2005@gmail.com" target="_blank" rel="noopener noreferrer" className="font-bold text-lg mb-0.5 break-all hover:text-gray-200 block transition-colors mt-1">
+                                        jsgosavi2005@gmail.com
                                     </a>
                                     <p className="text-white/80 text-sm font-medium mt-1">We reply within 24 hours</p>
                                 </div>

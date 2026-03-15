@@ -12,8 +12,8 @@ export const ProductCard = ({ product }) => {
     };
 
     return (
-        <Link to={`/product/${product.id}`} className="group relative block bg-white rounded-md shadow-sm border border-gray-100 p-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md mb-4 bg-gray-50 flex items-center justify-center">
+        <Link to={`/product/${product.id}`} className="group relative block bg-[#FFFAF0] rounded-md shadow-sm border border-yellow-200 p-4 transition-all duration-300 hover:shadow-xl hover:border-yellow-400 hover:-translate-y-1">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md mb-4 bg-white flex items-center justify-center">
                 <img
                     src={product.image}
                     alt={product.name}
@@ -22,8 +22,8 @@ export const ProductCard = ({ product }) => {
             </div>
 
             <div className="space-y-2">
-                <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider">{product.category}</p>
-                <h3 className="font-medium text-gray-900 line-clamp-2 leading-snug group-hover:text-[#2874f0] transition-colors h-11">
+                <p className="text-yellow-700 text-xs font-bold uppercase tracking-wider">{product.category}</p>
+                <h3 className="font-bold text-gray-900 line-clamp-2 leading-snug group-hover:text-yellow-600 transition-colors h-11">
                     {product.name}
                 </h3>
 
@@ -44,7 +44,7 @@ export const ProductCard = ({ product }) => {
 
                 <button
                     onClick={handleAddToCart}
-                    className="w-full mt-3 bg-white border border-[#2874f0] text-[#2874f0] font-semibold py-2 rounded-sm flex items-center justify-center gap-2 hover:bg-[#2874f0] hover:text-white transition-colors duration-300"
+                    className="w-full mt-3 bg-white border border-yellow-500 text-yellow-600 font-bold py-2 rounded-sm flex items-center justify-center gap-2 hover:bg-yellow-500 hover:text-gray-900 transition-colors duration-300"
                 >
                     <ShoppingCart size={18} /> Add to Cart
                 </button>

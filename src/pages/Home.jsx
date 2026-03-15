@@ -52,7 +52,7 @@ export const Home = () => {
                             <div className={`w-[70px] h-[70px] overflow-hidden flex items-center justify-center transition-all ${categoryQuery === cat.name ? 'scale-110 drop-shadow-md' : 'group-hover:scale-110'}`}>
                                 <img src={cat.img} alt={cat.name} className="w-full h-full object-contain mix-blend-multiply" />
                             </div>
-                            <span className={`text-sm font-semibold whitespace-nowrap transition-colors ${categoryQuery === cat.name ? 'text-[#2874f0]' : 'text-gray-800 group-hover:text-[#2874f0]'}`}>{cat.name}</span>
+                            <span className={`text-sm font-semibold whitespace-nowrap transition-colors ${categoryQuery === cat.name ? 'text-yellow-600' : 'text-gray-800 group-hover:text-yellow-600'}`}>{cat.name}</span>
                         </div>
                     ))}
                 </div>
@@ -74,9 +74,9 @@ export const Home = () => {
 
                     <div className="z-10 max-w-xl relative">
                         <span className="bg-red-600 text-white text-xs font-bold uppercase px-2 py-1 rounded inline-block mb-3 animate-pulse">Live Sale Ad</span>
-                        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 italic tracking-tight text-white drop-shadow-lg">BIG BILLION DAYS</h1>
-                        <p className="text-xl mb-6 opacity-100 font-medium drop-shadow-md">Get up to 80% off on premium electronics and smart wearables. Limited time offer!</p>
-                        <button className="bg-white text-gray-900 px-8 py-3 font-bold rounded-sm shadow border border-gray-100 hover:bg-[#fba100] hover:text-white hover:border-[#fba100] hover:shadow-md transition-all">Shop Now</button>
+                        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 italic tracking-tight text-[#FFD700] drop-shadow-lg">BIG BILLION DAYS</h1>
+                        <p className="text-xl mb-6 opacity-100 font-medium drop-shadow-md text-white">Get up to 80% off on premium electronics and smart wearables. Limited time offer!</p>
+                        <button className="bg-[#FFD700] text-gray-900 px-8 py-3 font-bold rounded-sm shadow border border-[#FFD700] hover:bg-yellow-500 hover:shadow-md transition-all">Shop Now</button>
                     </div>
                 </div>
             </div>
@@ -87,10 +87,10 @@ export const Home = () => {
                         <h2 className="text-2xl font-bold text-gray-900 tracking-tight">
                             {categoryQuery ? categoryQuery : searchQuery ? `Results for "${searchQuery}"` : "Best of Electronics"}
                         </h2>
-                        {!categoryQuery && !searchQuery && <div className="bg-yellow-400 font-bold text-xs uppercase px-2 py-1 rounded shadow-sm text-gray-900 animate-pulse">Hot</div>}
+                        {!categoryQuery && !searchQuery && <div className="bg-[#FFD700] font-bold text-xs uppercase px-2 py-1 rounded shadow-sm text-gray-900 animate-pulse">Hot</div>}
                         <span className="text-sm border ml-2 text-gray-500 font-semibold px-2 py-0.5 rounded bg-gray-50">Showing {filteredProducts.length} items</span>
                     </div>
-                    <button className="bg-[#2874f0] text-white rounded-full p-2 h-10 w-10 flex items-center justify-center text-xl font-bold hover:bg-blue-700 shadow-md transition-transform hover:scale-105">&rarr;</button>
+                    <button className="bg-[#FFD700] hover:bg-yellow-500 text-gray-900 rounded-full p-2 h-10 w-10 flex items-center justify-center text-xl font-bold shadow-md transition-transform hover:scale-105">&rarr;</button>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 bg-white p-2 shadow-sm rounded-b-sm border">
@@ -102,7 +102,7 @@ export const Home = () => {
                         <div className="col-span-full py-12 flex flex-col items-center justify-center text-gray-500">
                             <span className="text-4xl mb-4">🔍</span>
                             <h3 className="text-xl font-semibold">No products found for this search.</h3>
-                            <button onClick={() => navigate('/')} className="mt-4 text-[#2874f0] font-semibold hover:underline">Clear Search</button>
+                            <button onClick={() => navigate('/')} className="mt-4 text-yellow-600 font-semibold hover:underline">Clear Search</button>
                         </div>
                     )}
                 </div>

