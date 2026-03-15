@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@layer theme {
+  :root {
+    --color-primary: #2874f0; /* Flipkart blue */
+    --color-secondary: #fba100; /* Amazon orange highlight */
+    --color-background: #f1f3f6; /* Flipkart background */
+  }
+}
+
+body {
+  @apply bg-[#f1f3f6] text-gray-800 antialiased;
+}
