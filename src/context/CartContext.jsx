@@ -8,6 +8,8 @@ export const CartProvider = ({ children }) => {
         return savedCart ? JSON.parse(savedCart) : [];
     });
 
+    const [notification, setNotification] = useState(null);
+
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cartItems));
     }, [cartItems]);
@@ -22,6 +24,16 @@ export const CartProvider = ({ children }) => {
             }
             return [...prevItems, { ...product, quantity: 1 }];
         });
+        
+        // Trigger notification
+        setNotification({
+            id: Date.now(),
+            message: `${product.name} added to cart!`,
+            image: product.image
+        });
+
+        // Clear notification after 3 seconds
+        setTimeout(() => setNotification(null), 3000);
     };
 
     const removeFromCart = (id) => {
@@ -45,7 +57,7 @@ export const CartProvider = ({ children }) => {
     const clearCart = () => setCartItems([]);
 
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, getCartTotal, clearCart }}>
+        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, getCartTotal, clearCart, notification }}>
             {children}
         </CartContext.Provider>
     );

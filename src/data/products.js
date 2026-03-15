@@ -24,20 +24,32 @@ const baseNames = {
 
 let idCount = 1;
 
+const imageKeywords = {
+    'Grocery': 'grocery,organic,food',
+    'Mobiles': 'smartphone,phone,mobile',
+    'Fashion': 'clothing,fashion,apparel',
+    'Electronics': 'electronics,gadget,tech',
+    'Home & Furniture': 'furniture,home,interior',
+    'Appliances': 'appliance,kitchen,home',
+    'Travel': 'travel,luggage,vacation',
+    'Beauty, Toys & More': 'beauty,makeup,toys'
+};
+
 categories.forEach(catObj => {
     const nameList = baseNames[catObj.name];
     for (let i = 0; i < 15; i++) {
         const randomName = nameList[i];
-        const variedPrice = Math.floor(Math.random() * (450 - 20) + 20) + 0.99;
+        // Scale prices to realistic INR values
+        const variedPrice = Math.floor(Math.random() * (15000 - 499) + 499);
         const variedRating = parseFloat((Math.random() * 1 + 4).toFixed(1));
 
         products.push({
             id: idCount++,
-            name: `${randomName} Gen ${i + 1}`,
+            name: `${randomName}`,
             price: variedPrice,
-            description: `Experience the best of ${catObj.name.toLowerCase()} with this amazing item. Built with high quality materials and precision to last. Guaranteed satisfaction.`,
-            // Unique image per item using loremflickr based on the keyword and ID
-            image: `https://loremflickr.com/400/400/${catObj.keyword}?lock=${idCount}`,
+            description: `Experience the best of ${catObj.name.toLowerCase()} with this amazing ${randomName}. Designed for modern lifestyle, it combines premium aesthetics with exceptional performance. Whether you're looking for quality or value, this product delivers on both fronts.`,
+            // More specific images per item using loremflickr with product name and category
+            image: `https://loremflickr.com/600/600/${catObj.keyword},${randomName.split(' ')[0].toLowerCase()}?lock=${idCount}`,
             category: catObj.name,
             rating: variedRating,
             reviews: Math.floor(Math.random() * 5000) + 25

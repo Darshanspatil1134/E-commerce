@@ -1,14 +1,19 @@
 import { Link } from 'react-router-dom';
-import { Star, ShoppingCart } from 'lucide-react';
+import { useState } from 'react';
+import { Star, ShoppingCart, Check } from 'lucide-react';
 import { useCart } from '../hooks/useCart';
 
 export const ProductCard = ({ product }) => {
     const { addToCart } = useCart();
 
+    const [isAdded, setIsAdded] = useState(false);
+
     const handleAddToCart = (e) => {
         e.preventDefault();
         e.stopPropagation();
         addToCart(product);
+        setIsAdded(true);
+        setTimeout(() => setIsAdded(false), 1500);
     };
 
     return (
@@ -36,17 +41,22 @@ export const ProductCard = ({ product }) => {
 
                 <div className="flex items-center justify-between pt-2">
                     <div className="flex items-baseline gap-2">
-                        <span className="text-xl font-bold text-gray-900">${product.price.toFixed(2)}</span>
-                        <span className="text-sm text-gray-500 line-through">${(product.price * 1.3).toFixed(2)}</span>
+                        <span className="text-xl font-bold text-gray-900">₹{product.price.toFixed(2)}</span>
+                        <span className="text-sm text-gray-500 line-through">₹{(product.price * 1.3).toFixed(2)}</span>
                         <span className="text-xs text-green-600 font-bold">30% off</span>
                     </div>
                 </div>
 
                 <button
                     onClick={handleAddToCart}
-                    className="w-full mt-3 bg-white border border-yellow-500 text-yellow-600 font-bold py-2 rounded-sm flex items-center justify-center gap-2 hover:bg-yellow-500 hover:text-gray-900 transition-colors duration-300"
+                    disabled={isAdded}
+                    className={`w-full mt-3 font-bold py-2 rounded-sm flex items-center justify-center gap-2 transition-all duration-300 ${isAdded ? 'bg-green-600 border-green-600 text-white scale-95' : 'bg-white border border-yellow-500 text-yellow-600 hover:bg-yellow-500 hover:text-gray-900 active:scale-95'}`}
                 >
-                    <ShoppingCart size={18} /> Add to Cart
+                    {isAdded ? (
+                        <><Check size={18} /> Added!</>
+                    ) : (
+                        <><ShoppingCart size={18} /> Add to Cart</>
+                    )}
                 </button>
             </div>
         </Link>

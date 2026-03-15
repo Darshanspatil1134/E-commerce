@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { Star, Truck, ShieldCheck, Tag, Zap } from 'lucide-react';
+import { useState } from 'react';
+import { Star, Truck, ShieldCheck, Tag, Zap, Check, ShoppingCart } from 'lucide-react';
 import { products } from '../data/products';
 import { useCart } from '../hooks/useCart';
 
@@ -18,8 +19,12 @@ export const ProductDetail = () => {
         );
     }
 
+    const [isAdded, setIsAdded] = useState(false);
+
     const handleAddToCart = () => {
         addToCart(product);
+        setIsAdded(true);
+        setTimeout(() => setIsAdded(false), 1500);
     };
 
     const handleBuyNow = () => {
@@ -41,9 +46,14 @@ export const ProductDetail = () => {
                     <div className="flex gap-2 w-full mt-4 flex-col lg:flex-row">
                         <button
                             onClick={handleAddToCart}
-                            className="flex-1 bg-[#ff9f00] hover:bg-[#f39400] text-white font-bold py-4 rounded-sm transition-colors text-base uppercase shadow flex items-center justify-center gap-2 tracking-wide"
+                            disabled={isAdded}
+                            className={`flex-1 font-bold py-4 rounded-sm transition-all text-base uppercase shadow flex items-center justify-center gap-2 tracking-wide ${isAdded ? 'bg-green-600' : 'bg-[#ff9f00] hover:bg-[#f39400] active:scale-95 text-white'}`}
                         >
-                            Add to Cart
+                            {isAdded ? (
+                                <><Check size={20} /> Added to Cart</>
+                            ) : (
+                                <><ShoppingCart size={20} /> Add to Cart</>
+                            )}
                         </button>
                         <button
                             onClick={handleBuyNow}
@@ -68,8 +78,8 @@ export const ProductDetail = () => {
                     </div>
 
                     <div className="flex items-end gap-3 mb-6">
-                        <span className="text-3xl font-bold text-gray-900">${product.price.toFixed(2)}</span>
-                        <span className="text-gray-500 line-through text-lg font-medium">${(product.price * 1.3).toFixed(2)}</span>
+                        <span className="text-3xl font-bold text-gray-900">₹{product.price.toFixed(2)}</span>
+                        <span className="text-gray-500 line-through text-lg font-medium">₹{(product.price * 1.3).toFixed(2)}</span>
                         <span className="text-green-600 font-bold text-sm tracking-wide">30% off</span>
                     </div>
 

@@ -48,8 +48,8 @@ export const Cart = () => {
                                     <p className="text-sm text-gray-500 mb-3">{item.category}</p>
 
                                     <div className="flex items-baseline gap-2 mb-4">
-                                        <span className="text-gray-500 line-through text-sm">${(item.price * 1.3).toFixed(2)}</span>
-                                        <span className="text-2xl font-bold text-gray-900">${item.price.toFixed(2)}</span>
+                                        <span className="text-gray-500 line-through text-sm">₹{(item.price * 1.3).toFixed(2)}</span>
+                                        <span className="text-2xl font-bold text-gray-900">₹{item.price.toFixed(2)}</span>
                                         <span className="text-green-600 font-bold text-sm tracking-wide">30% Off</span>
                                     </div>
 
@@ -86,7 +86,7 @@ export const Cart = () => {
 
                                 <div className="hidden md:flex flex-col items-end">
                                     <p className="text-sm text-gray-800 font-semibold mb-1 w-max">Delivery by 11 PM, Tomorrow</p>
-                                    <p className="text-xs text-green-600">Free <span className="text-gray-500 line-through">$50</span></p>
+                                    <p className="text-xs text-green-600">Free <span className="text-gray-500 line-through">₹50</span></p>
                                 </div>
                             </div>
                         ))}

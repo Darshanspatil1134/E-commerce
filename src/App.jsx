@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { Toast } from './components/Toast';
 import { Home } from './pages/Home';
 import { ProductDetail } from './pages/ProductDetail';
 import { Cart } from './pages/Cart';
@@ -12,7 +13,7 @@ function App() {
   return (
     <CartProvider>
       <Router>
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen relative">
           <Header />
           <div className="flex-1 bg-[#f1f3f6]">
             <Routes>
@@ -25,6 +26,7 @@ function App() {
             </Routes>
           </div>
           <Footer />
+          <Toast />
         </div>
       </Router>
     </CartProvider>

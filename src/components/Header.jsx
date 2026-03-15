@@ -152,7 +152,10 @@ export const Header = () => {
                         <div className="relative">
                             <ShoppingCart size={24} />
                             {totalItems > 0 && (
-                                <span className="absolute -top-2 -right-3 bg-red-600 text-white text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center transition-transform scale-110">
+                                <span 
+                                    key={totalItems}
+                                    className="absolute -top-2 -right-3 bg-red-600 text-white text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center animate-bounce shadow-lg"
+                                >
                                     {totalItems}
                                 </span>
                             )}

@@ -19,28 +19,28 @@ export const PriceSidebar = ({ hideButton = false, isCheckout = false }) => {
             <div className="space-y-4 text-sm">
                 <div className="flex justify-between items-center text-gray-800">
                     <span>Price ({totalItems} items)</span>
-                    <span>${total.toFixed(2)}</span>
+                    <span>₹{total.toFixed(2)}</span>
                 </div>
 
                 <div className="flex justify-between items-center text-gray-800">
                     <span>Discount</span>
-                    <span className="text-green-600 font-semibold">-${discount.toFixed(2)}</span>
+                    <span className="text-green-600 font-semibold">-₹{discount.toFixed(2)}</span>
                 </div>
 
                 <div className="flex justify-between items-center text-gray-800">
                     <span>Delivery Charges</span>
                     <span className={shipping === 0 ? "text-green-600 font-semibold border-b border-dashed border-green-600" : ""}>
-                        {shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}
+                        {shipping === 0 ? "Free" : `₹${shipping.toFixed(2)}`}
                     </span>
                 </div>
 
                 <div className="border-t border-dashed my-4 pt-4 pb-2 border-b flex justify-between items-center font-bold text-lg text-gray-900 border-gray-200">
                     <span>Total Amount</span>
-                    <span>${finalTotal.toFixed(2)}</span>
+                    <span>₹{finalTotal.toFixed(2)}</span>
                 </div>
 
                 <p className="text-green-600 font-semibold text-xs tracking-wide">
-                    You will save ${discount.toFixed(2)} on this order
+                    You will save ₹{discount.toFixed(2)} on this order
                 </p>
 
                 {!hideButton && (
