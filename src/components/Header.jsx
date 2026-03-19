@@ -1,9 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Search, User, Menu, X, Home } from 'lucide-react';
+import { ShoppingCart, Search, User, Menu, X, Home, HelpCircle } from 'lucide-react';
 import { useCart } from '../hooks/useCart';
 import { useState, useEffect, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { products } from '../data/products';
+
 
 export const Header = () => {
     const { cartItems } = useCart();
@@ -12,12 +13,14 @@ export const Header = () => {
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
     const [showSuggestions, setShowSuggestions] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const searchRef = useRef(null);
 
     // Filter products based on search query for suggestions
     const suggestions = searchQuery.trim()
         ? products.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()) || p.category.toLowerCase().includes(searchQuery.toLowerCase())).slice(0, 6)
         : [];
+
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -111,25 +114,31 @@ export const Header = () => {
 
                             {/* Desktop Search Suggestions */}
                             {showSuggestions && searchQuery.trim() && (
-                                <div className="absolute top-11 left-0 w-full bg-white rounded-sm shadow-xl border border-gray-200 overflow-hidden z-[100]">
+                                <div className="absolute top-11 left-0 w-full bg-white rounded-sm shadow-2xl border border-gray-200 overflow-hidden z-[100] animate-in fade-in slide-in-from-top-2 duration-200">
                                     {suggestions.length > 0 ? (
-                                        <ul className="py-2">
+                                        <ul className="divide-y divide-gray-50">
                                             {suggestions.map((item) => (
                                                 <li
                                                     key={item.id}
                                                     onClick={() => handleSuggestionClick(item.name)}
-                                                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-800 text-sm flex items-center gap-3 transition-colors"
+                                                    className="px-4 py-3 hover:bg-yellow-50 cursor-pointer text-gray-800 text-sm flex items-center gap-4 transition-all group"
                                                 >
-                                                    <Search size={14} className="text-gray-400 shrink-0" />
-                                                    <div className="flex flex-col truncate">
-                                                        <span className="font-medium truncate">{item.name}</span>
-                                                        <span className="text-xs text-gray-500 uppercase">{item.category}</span>
+                                                    <div className="w-10 h-10 bg-gray-50 rounded p-1 flex items-center justify-center shrink-0 border border-gray-100 group-hover:border-yellow-200">
+                                                        <img src={item.image} alt="" className="w-full h-full object-contain mix-blend-multiply" />
                                                     </div>
+                                                    <div className="flex flex-col min-w-0">
+                                                        <span className="font-semibold text-gray-900 group-hover:text-yellow-700 truncate">{item.name}</span>
+                                                        <span className="text-[10px] text-gray-500 uppercase font-bold tracking-wider">{item.category}</span>
+                                                    </div>
+                                                    <Search size={14} className="ml-auto text-gray-300 group-hover:text-yellow-500 transition-colors" />
                                                 </li>
                                             ))}
                                         </ul>
                                     ) : (
-                                        <div className="px-4 py-3 text-sm text-gray-500">No matching products found.</div>
+                                        <div className="px-5 py-4 text-sm text-gray-500 italic flex items-center gap-2">
+                                            <Search size={16} className="text-gray-300" />
+                                            No products found matching "{searchQuery}"
+                                        </div>
                                     )}
                                 </div>
                             )}
@@ -163,11 +172,38 @@ export const Header = () => {
                         <span className="hidden md:block text-sm mt-1">Cart</span>
                     </Link>
 
-                    <button className="md:hidden flex items-center">
-                        <Menu size={24} />
+                    <button 
+                        className="md:hidden flex items-center text-gray-900 hover:text-black transition-colors"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    >
+                        {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
                     </button>
                 </div>
             </div>
+
+            {/* Mobile Dropdown Menu */}
+            {isMenuOpen && (
+                <div className="md:hidden bg-white border-t border-gray-100 shadow-xl animate-in slide-in-from-top duration-300">
+                    <nav className="flex flex-col p-4 gap-4">
+                        <Link to="/" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 text-gray-800 font-bold p-3 rounded-lg hover:bg-yellow-50 active:bg-yellow-100 transition-all border border-transparent hover:border-yellow-200">
+                            <Home size={20} className="text-yellow-600" /> Home
+                        </Link>
+                        <Link to="/support" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 text-gray-800 font-bold p-3 rounded-lg hover:bg-yellow-50 active:bg-yellow-100 transition-all border border-transparent hover:border-yellow-200">
+                            <HelpCircle size={20} className="text-yellow-600" /> Support
+                        </Link>
+                        <button 
+                            onClick={() => {
+                                setIsMenuOpen(false);
+                                setShowLogin(true);
+                            }} 
+                            className="flex items-center gap-3 text-gray-800 font-bold p-3 rounded-lg hover:bg-yellow-50 active:bg-yellow-100 transition-all border border-transparent hover:border-yellow-200 text-left"
+                        >
+                            <User size={20} className="text-yellow-600" /> Login / Sign Up
+                        </button>
+                    </nav>
+                </div>
+            )}
+
 
             {/* Mobile Search */}
             <div className="md:hidden px-4 pb-3 relative" ref={searchRef}>
@@ -189,25 +225,28 @@ export const Header = () => {
 
                     {/* Mobile Search Suggestions */}
                     {showSuggestions && searchQuery.trim() && (
-                        <div className="absolute top-[100%] left-0 w-full bg-white shadow-xl border-x border-b border-gray-200 overflow-hidden z-[100]">
+                        <div className="absolute top-[100%] left-0 w-full bg-white shadow-2xl border-x border-b border-gray-100 overflow-hidden z-[100] rounded-b-lg">
                             {suggestions.length > 0 ? (
-                                <ul className="py-2">
+                                <ul className="divide-y divide-gray-50">
                                     {suggestions.map((item) => (
                                         <li
                                             key={item.id}
                                             onClick={() => handleSuggestionClick(item.name)}
-                                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-800 text-sm flex items-center gap-3 transition-colors"
+                                            className="px-4 py-3 hover:bg-yellow-50 active:bg-yellow-100 cursor-pointer text-gray-800 text-sm flex items-center gap-4 transition-all"
                                         >
-                                            <Search size={14} className="text-gray-400 shrink-0" />
-                                            <div className="flex flex-col truncate">
-                                                <span className="font-medium truncate">{item.name}</span>
-                                                <span className="text-[10px] text-gray-500 uppercase">{item.category}</span>
+                                            <div className="w-10 h-10 bg-gray-50 rounded p-1 flex items-center justify-center shrink-0 border border-gray-100">
+                                                <img src={item.image} alt="" className="w-full h-full object-contain mix-blend-multiply" />
                                             </div>
+                                            <div className="flex flex-col min-w-0 flex-1">
+                                                <span className="font-semibold text-gray-950 truncate leading-tight">{item.name}</span>
+                                                <span className="text-[10px] text-gray-500 uppercase font-bold tracking-wider">{item.category}</span>
+                                            </div>
+                                            <Search size={14} className="text-gray-300" />
                                         </li>
                                     ))}
                                 </ul>
                             ) : (
-                                <div className="px-4 py-3 text-sm text-gray-500">No matching products found.</div>
+                                <div className="px-5 py-4 text-sm text-gray-500 italic">No search results for "{searchQuery}"</div>
                             )}
                         </div>
                     )}

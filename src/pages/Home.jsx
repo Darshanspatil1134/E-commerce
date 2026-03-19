@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { ProductCard } from '../components/ProductCard';
 import { products } from '../data/products';
@@ -37,11 +38,31 @@ export const Home = () => {
         { name: 'Mobiles', keyword: 'smartphone', img: 'https://rukminim2.flixcart.com/flap/128/128/image/22fddf3c7da4c4f4.png' },
         { name: 'Fashion', keyword: 'clothing', img: 'https://rukminim2.flixcart.com/fk-p-flap/128/128/image/0d75b34f7d8fbcb3.png' },
         { name: 'Electronics', keyword: 'electronics', img: 'https://rukminim2.flixcart.com/flap/128/128/image/69c6589653afdb9a.png' },
-        { name: 'Home & Furniture', keyword: 'furniture', img: 'https://rukminim2.flixcart.com/flap/128/128/image/ab7e2b022a4587dd.jpg' },
-        { name: 'Appliances', keyword: 'appliance', img: 'https://rukminim2.flixcart.com/flap/128/128/image/0ff199d1bd27eb98.png' },
-        { name: 'Travel', keyword: 'travel', img: 'https://rukminim2.flixcart.com/flap/128/128/image/71050627a56b4693.png' },
         { name: 'Beauty, Toys & More', keyword: 'beauty', img: 'https://rukminim2.flixcart.com/flap/128/128/image/dff3f7adcf3a90c6.png' }
     ];
+
+    const videoRef = useRef(null);
+    const productsSectionRef = useRef(null);
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        const handleTimeUpdate = () => {
+            // Restart video after 10 seconds
+            if (video.currentTime >= 10) {
+                video.currentTime = 0;
+                video.play();
+            }
+        };
+
+        video.addEventListener('timeupdate', handleTimeUpdate);
+        return () => video.removeEventListener('timeupdate', handleTimeUpdate);
+    }, []);
+
+    const handleShopNow = () => {
+        productsSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
 
     return (
         <main className="min-h-screen pb-12">
@@ -62,13 +83,14 @@ export const Home = () => {
             <div className="container mx-auto px-4 mb-6">
                 <div className="h-64 md:h-80 w-full rounded-sm overflow-hidden relative shadow-sm flex items-center p-8 md:p-14 text-white bg-black">
                     <video
+                        ref={videoRef}
                         autoPlay
                         muted
                         loop
                         playsInline
                         className="absolute inset-0 z-0 w-full h-full object-cover opacity-60 pointer-events-none"
                     >
-                        <source src="https://videos.pexels.com/video-files/5632403/5632403-uhd_2560_1440_24fps.mp4" type="video/mp4" />
+                        <source src="/videooo.mp4" type="video/mp4" />
                         Your browser does not support HTML5 video.
                     </video>
 
@@ -76,12 +98,18 @@ export const Home = () => {
                         <span className="bg-red-600 text-white text-xs font-bold uppercase px-2 py-1 rounded inline-block mb-3 animate-pulse">Live Sale Ad</span>
                         <h1 className="text-4xl md:text-5xl font-extrabold mb-4 italic tracking-tight text-[#FFD700] drop-shadow-lg">BIG BILLION DAYS</h1>
                         <p className="text-xl mb-6 opacity-100 font-medium drop-shadow-md text-white">Get up to 80% off on premium electronics and smart wearables. Limited time offer!</p>
-                        <button className="bg-[#FFD700] text-gray-900 px-8 py-3 font-bold rounded-sm shadow border border-[#FFD700] hover:bg-yellow-500 hover:shadow-md transition-all">Shop Now</button>
+                        <button 
+                            onClick={handleShopNow}
+                            className="bg-[#FFD700] text-gray-900 px-8 py-3 font-bold rounded-sm shadow border border-[#FFD700] hover:bg-yellow-500 hover:shadow-md transition-all active:scale-95"
+                        >
+                            Shop Now
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <div className="container mx-auto px-4">
+            <div ref={productsSectionRef} className="container mx-auto px-4">
+
                 <div className="bg-white p-5 shadow-sm rounded-sm mb-2 flex items-center justify-between border-b pb-4">
                     <div className="flex items-center gap-4">
                         <h2 className="text-2xl font-bold text-gray-900 tracking-tight">
